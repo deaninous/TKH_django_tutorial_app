@@ -11,13 +11,23 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+TEMPLATE_PATH = os.path.join(BASE_DIR, 'templates')
+STATIC_PATH = os.path.join(BASE_DIR, 'static')
+STATIC_URL = '/static/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
+
+
+TEMPLATE_DIRS = (TEMPLATE_PATH, )
+STATICFILES_DIRS = (STATIC_PATH,)
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '_-!sv77)!k#fm-s^q#pr=$x*%&@@z8+3c6(1%hff26n&=+imhl'
+
+SECRET_KEY = 'test'#Your security key here as a string
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -81,4 +91,3 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
-STATIC_URL = '/static/'
