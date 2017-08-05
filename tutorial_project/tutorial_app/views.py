@@ -1,5 +1,8 @@
 from django.shortcuts import render
 from models import Category, Page #this is our models.p
+from forms import CategoryForm #forms is our forms.py
+
+
 
 # Create your views here.
 from django.http import HttpResponse
@@ -19,5 +22,19 @@ def category(request, category_name_slug):
 		context_dict['pages'] = pages
 		context_dict['category'] = category
 	except Category.DoesNotExist:
-		pass
+		print 'sorry ' + str(category_name_slug) + ' does not exist'
 	return render(request, 'category.html', context_dict)
+def add_category(request):
+	if request.method == 'POST':
+		form = CategoryForm(request.POST) #validate input with CategoryForm class
+		if form.is_valid():
+			form.save(commit=True)
+			return index(request)
+		else:
+			print form.errors
+	else:
+		form = CategoryForm()
+		return render(request, 'add_category.html', {'form':form})
+
+
+
