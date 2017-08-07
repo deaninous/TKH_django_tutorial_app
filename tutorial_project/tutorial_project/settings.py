@@ -16,7 +16,7 @@ STATIC_PATH = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
-
+LOGIN_URL = '/login/'
 
 TEMPLATE_DIRS = (TEMPLATE_PATH, )
 STATICFILES_DIRS = (STATIC_PATH,)
@@ -73,6 +73,13 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+
+PASSWORD_HASHERS = (
+'django.contrib.auth.hashers.BCryptSHA256PasswordHasher',
+'django.contrib.auth.hashers.BCryptPasswordHasher',
+'django.contrib.auth.hashers.PBKDF2PasswordHasher',
+'django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher',
+)
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
