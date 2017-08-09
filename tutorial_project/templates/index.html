@@ -1,24 +1,20 @@
-{% load static %}
-
-<html>
-<head>
-	<title>Base App</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block title%}{{category_name}}{% endblock %}
+{% block body_block %}
+{{visits}}
 	<h1>Details</h1>
 	{% if user.is_authenticated %}
-	<div><a href="/logout">Logout</a></div>
-	<div><a href="/add_category">Add a New category</a></div>
-
+	<h1> Hello {{ user.usrname }}</h1>
 	{% else %}
-	<div><a href="/register/">Register</a></div>
-	<div><a href="/login">Login</a></div>
+	<h1>Hello World!</h1>
 	{% endif %}
-	<div>Here come the cats:</div>
 	{% if categories %}
+	<div>Here come the cats:</div>
+
 	<ul>
 		{% for category in categories %}
-			<li>{{category.name}}</li>
+			<li><a href="/category/{{category.slug }}"></a>{{category.name}}</li>
 		{% endfor%}
 	</ul>
 	{% else %}
@@ -30,8 +26,9 @@
 			<div><a href="{{page.url}}">{{page.title}}</a></div>
 		{% endfor %}
 	{% endif %}
-	<div><a href="/about/">About</a></div>
 
-	<img src="{% static 'images/image.jpg' %}" alt="">
+		
+	{% endblock %}
+
 </body>
 </html>
